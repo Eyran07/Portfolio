@@ -15,7 +15,9 @@ import {
   ModalBody,
   ModalCloseButton,
   Icon,
-  Center
+  Center,
+  useColorModeValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import project1Image from "../assets/petagency.png";
 import project2Image from "../assets/sueapp.png";
@@ -34,19 +36,21 @@ const Project = () => {
   const projects = [
     {
       title: "Pet Agency App",
-      description: "Last project of my bootcamp was to build a pet agency app using react, nodejs, express and mongodb.",
+      description:
+        "Last project of my bootcamp was to build a pet agency app using react, nodejs, express and mongodb.",
       image: project1Image,
       link: "https://pet-agency-app-client.vercel.app/",
       techIcons: [faReact, faJs, faNodeJs, faServer],
-      techIconColors: ["#61dafb", "#f7df1e", "#3c873a", "#4d4d4d"]
+      techIconColors: ["#61dafb", "#f7df1e", "#3c873a", "#4d4d4d"],
     },
     {
       title: "SueApp",
-      description: "Developed during my internship at SueApp FAQ, Thanks and 13 forms pages for the website using react and typescript. For the backend I used NodeJS TypeScript Express and MongoDB, and implement the Proof API to send the claim into the adress of the defendant.  ",
+      description:
+        "Developed during my internship at SueApp FAQ, Thanks and 13 forms pages for the website using react and typescript. For the backend I used NodeJS TypeScript Express and MongoDB, and implement the Proof API to send the claim into the adress of the defendant.  ",
       image: project2Image,
       link: "https://dev.sue-app.com/",
       techIcons: [faReact, faJs, faNodeJs, faServer],
-      techIconColors: ["#61dafb", "#f7df1e", "#3c873a", "#4d4d4d"]
+      techIconColors: ["#61dafb", "#f7df1e", "#3c873a", "#4d4d4d"],
     },
     {
       title: "Lucien et Marinette",
@@ -54,21 +58,21 @@ const Project = () => {
       image: project3Image,
       link: "https://lmhotel.vercel.app/",
       techIcons: [faReact, faJs],
-      techIconColors: ["#61dafb", "#f7df1e"]
+      techIconColors: ["#61dafb", "#f7df1e"],
     },
   ];
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalContent, setModalContent] = useState({
-    title: '',
-    description: '',
-    image: '',
+    title: "",
+    description: "",
+    image: "",
     techIcons: [],
-    techIconColors: []
+    techIconColors: [],
   });
 
   const openModal = (title, description, image, techIcons, techIconColors) => {
-    setModalContent({title, description, image, techIcons, techIconColors});
+    setModalContent({ title, description, image, techIcons, techIconColors });
     onOpen();
   };
 
@@ -84,6 +88,7 @@ const Project = () => {
       flexDirection="column"
       textAlign="center"
       padding="1rem"
+      backgroundColor={useColorModeValue("white", "#222")}
     >
       <Heading
         fontSize={{
@@ -104,12 +109,13 @@ const Project = () => {
         My Projects
       </Heading>
       <Flex
-        direction={['column', 'column', 'row', 'row']}
+        direction={["column", "column", "row", "row"]}
         justifyContent="space-around"
         alignItems="center"
         width="100%"
         mt={9}
-        padding="1rem" 
+        padding="1rem"
+        color={useColorModeValue("#222", "white")}
       >
         {projects.map((project, index) => (
           <Box
@@ -121,7 +127,7 @@ const Project = () => {
             justifyContent="center"
           >
             <Image
-            ml={['30px', '40px', 'none', 'none']}
+              ml={["30px", "40px", "none", "none"]}
               src={project.image}
               alt={project.title}
               boxSize={{
@@ -131,7 +137,7 @@ const Project = () => {
                 lg: "300px",
                 xl: "350px",
               }}
-              objectFit="contain" 
+              objectFit="contain"
             />
             <Heading
               fontSize={{
@@ -141,7 +147,6 @@ const Project = () => {
                 lg: "35px",
                 xl: "40px",
               }}
-              color="black"
               fontFamily={"Arial, sans-serif"}
               mt={2}
             >
@@ -156,14 +161,27 @@ const Project = () => {
                 lg: "20px",
                 xl: "22px",
               }}
-              color="black"
             >
               {`${project.description.substring(0, 40)}...`}
             </Text>
-            <Button onClick={() => openModal(project.title, project.description, project.image, project.techIcons, project.techIconColors)} colorScheme="teal" variant="outline" mt={2}>
+            <Button
+              onClick={() =>
+                openModal(
+                  project.title,
+                  project.description,
+                  project.image,
+                  project.techIcons,
+                  project.techIconColors
+                )
+              }
+              colorScheme="whatsapp"
+              variant="outline"
+              mt={2}
+              mr={5}
+            >
               See More
             </Button>
-            <Button colorScheme="teal" variant="outline" mt={2}>
+            <Button colorScheme="whatsapp" variant="outline" mt={2}>
               <Link href={project.link} isExternal>
                 View Project
               </Link>
@@ -173,7 +191,7 @@ const Project = () => {
       </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent backgroundColor={useColorModeValue("white", "#222")}>
           <ModalHeader>{modalContent.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -188,7 +206,7 @@ const Project = () => {
                   lg: "300px",
                   xl: "350px",
                 }}
-                objectFit="contain" 
+                objectFit="contain"
                 mb={3}
               />
             </Center>

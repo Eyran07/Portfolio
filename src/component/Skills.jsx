@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Flex, Text, Divider } from "@chakra-ui/react";
+import { Box, Heading, Flex, Text, Divider, useColorModeValue } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faJs,
@@ -35,6 +35,7 @@ const Skills = () => {
       alignItems="center"
       flexDirection="column"
       padding="1rem"
+      backgroundColor={useColorModeValue("white", "#222")}
     >
       <Heading
         fontSize={{
@@ -90,7 +91,7 @@ const Skills = () => {
         </Box>
         </Flex>
         <Divider borderColor="gray.500" w={'320px'} />
-        <Flex direction={["column", "column"]} justifyContent="center" >
+        <Flex direction={["column", "column"]} backgroundColor={useColorModeValue("white", "#222")} justifyContent="center" >
         <Box width="100%" textAlign="start" >
           <Heading
           mr={'10px'}
@@ -107,7 +108,7 @@ const Skills = () => {
           >
             Backend
           </Heading>
-          <Flex wrap="wrap" justify="center">
+          <Flex wrap="wrap"  justify="center">
             {backEndSkills.map((skill, index) => (
               <Box
                 key={index}

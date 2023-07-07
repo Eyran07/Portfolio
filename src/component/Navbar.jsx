@@ -10,14 +10,16 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Link as ScrollLink } from "react-scroll";
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons"; 
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue("black", "white");
-  const color = useColorModeValue("white", "black");
-  const activeBgColor = useColorModeValue("white", "black");
-  const activeColor = useColorModeValue("black", "white");
+  const bgColor = useColorModeValue("#222", "white");
+  const color = useColorModeValue("white", "#222");
+  const activeBgColor = useColorModeValue("white", "#222");
+  const activeColor = useColorModeValue("#222", "white");
+
+  const [currentSection, setCurrentSection] = useState("home");
 
   const navItems = [
     { name: "HOME", to: "home" },
@@ -31,7 +33,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Flex fontFamily="Roboto, sans-serif"
+      <Flex backgroundColor={bgColor} color={color}
         justifyContent="space-between"
         padding="1rem"
         position="fixed"
@@ -45,9 +47,9 @@ const NavBar = () => {
           smooth={true}
           offset={-70}
           duration={500}
-          color={'black'}
           cursor="pointer"
           marginX="1rem"
+          color={color}
           _hover={{ color: activeColor, backgroundColor: activeBgColor }}
           fontSize="20px"
         >
@@ -76,23 +78,27 @@ const NavBar = () => {
         >
           {navItems.map((item, index) => (
             <Box
-              as={ScrollLink}
-              key={index}
-              activeClass="active"
-              to={item.to}
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              color={color}
-              cursor="pointer"
-              fontFamily={'Clash Display,sans-serif'}
-              fontSize="20px"
-              _hover={{ color: activeColor, borderRadius: '7px', backgroundColor: activeBgColor }}
-              onClick={onClose}
-            >
-              {item.name}
-            </Box>
+            as={ScrollLink}
+            key={index}
+            to={item.to}
+            spy={true}
+            smooth={true}
+            offset={item.to === "contact" ? 0 : -70}
+            duration={500}
+            color={item.to === currentSection ? activeColor : color} // Change color when active
+            backgroundColor={item.to === currentSection ? activeBgColor : "transparent"} // Change background color when active
+            cursor="pointer"
+            fontWeight={600}
+            fontSize="15px"
+            marginX="1rem"
+            _hover={{ color: activeColor, backgroundColor: activeBgColor }}
+            onSetActive={() => setCurrentSection(item.to)}
+            p={2} // padding
+            borderRadius="50px" // rounded corners
+          >
+            {item.name}
+          </Box>
+          
           ))}
         </VStack>
       </Collapse>
@@ -118,18 +124,21 @@ const NavBar = () => {
             <Box
               as={ScrollLink}
               key={index}
-              activeClass="active"
               to={item.to}
               spy={true}
               smooth={true}
               offset={-70}
               duration={500}
-              color={color}
+              color={item.to === currentSection ? activeColor : color} // Change color when active
+              backgroundColor={item.to === currentSection ? activeBgColor : "transparent"} // Change background color when active
               cursor="pointer"
-              fontFamily={'Clash Display,sans-serif'}
-              fontSize="20px"
+              fontWeight={600}
+              fontSize="15px"
               marginX="1rem"
-              _hover={{ color: activeColor, borderRadius: '7px', backgroundColor: activeBgColor }}
+              _hover={{ color: activeColor, backgroundColor: activeBgColor }}
+              onSetActive={() => setCurrentSection(item.to)}
+              p={2} // padding
+              borderRadius="50px" // rounded corners
             >
               {item.name}
             </Box>

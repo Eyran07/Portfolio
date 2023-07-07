@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Heading, Text, Flex, Link, List, ListItem, ListIcon } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Link, List, ListItem, ListIcon, Icon, useColorModeValue } from "@chakra-ui/react";
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Contact = () => {
+  const iconColor = useColorModeValue("#222", "white");
+
   return (
     <Box
       as="section"
@@ -15,6 +17,7 @@ const Contact = () => {
       flexDirection="column"
       textAlign="center"
       padding="1rem"
+      backgroundColor={useColorModeValue("white", "#222")}
     >
       <Heading
         fontSize={{
@@ -25,12 +28,9 @@ const Contact = () => {
           xl: "50px",
         }}
         fontWeight="bold"
-        color="white"
+        color={iconColor}
         fontFamily={"Arial, sans-serif"}
-        mb={0}
-        css={{
-          WebkitTextStroke: "1px black",
-        }}
+        mb={'30px'}
       >
         Contact Me
       </Heading>
@@ -42,24 +42,24 @@ const Contact = () => {
       >
         <List spacing={3}>
           <ListItem>
-            <ListIcon as={FaEnvelope} color="teal" />
-            <Link href="eyranabbou20@gmail.com" color="black">
+            <Icon as={FaEnvelope} boxSize={8} color={iconColor} />
+            <Link href="mailto:eyranabbou20@gmail.com" color={iconColor}>
               eyranabbou20@gmail.com
             </Link>
           </ListItem>
           <ListItem>
-            <ListIcon as={FaPhone} color="teal" />
-            <Text color="black">+972 54-499-4778</Text>
+            <Icon as={FaPhone} boxSize={8} color={iconColor} />
+            <Text color={iconColor}>+972 54-499-4778</Text>
           </ListItem>
           <ListItem>
-            <ListIcon as={FaLinkedin} color="teal" />
-            <Link href="https://www.linkedin.com/in/eyran-abbou-1a125a21b/" color="black" isExternal>
+            <Icon as={FaLinkedin} boxSize={8} color={iconColor} />
+            <Link href="https://www.linkedin.com/in/eyran-abbou-1a125a21b/" color={iconColor} isExternal>
               LinkedIn
             </Link>
           </ListItem>
           <ListItem>
-            <ListIcon as={FaGithub} color="teal" />
-            <Link href="https://github.com/Eyran07" color="black" isExternal>
+            <Icon as={FaGithub} boxSize={8} color={iconColor} />
+            <Link href="https://github.com/Eyran07" color={iconColor} isExternal>
               GitHub
             </Link>
           </ListItem>

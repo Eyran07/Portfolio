@@ -1,10 +1,13 @@
 import React from "react";
-import { Box, Link, Heading, Text, Image, Button } from "@chakra-ui/react";
+import { Box, Link, Heading, Text, Image, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import profile from "../assets/profil.jpeg";
-import background from '../assets/backgroundHome.jpeg';
 import cv from "../assets/cv.pdf";
 
 const Home = () => {
+  const { colorMode } = useColorMode();
+  const textColor = colorMode === '#222' ? 'white' : '"#222';
+  const iconColor = useColorModeValue("#222", "white");
+
   return (
     <Box
       as="section"
@@ -17,9 +20,9 @@ const Home = () => {
       flexDirection="column"
       textAlign="center"
       padding="1rem"
-      // backgroundImage={`url(${background})`}
+      backgroundColor={useColorModeValue("white", "#222")}
     >
-      <Heading
+       <Heading
         fontSize={{
           base: "30px",
           sm: "35px",
@@ -40,7 +43,7 @@ const Home = () => {
           as="span"
           css={{ WebkitTextStroke: "0" }}
           fontFamily={"Arial, sans-serif"}
-          color="black"
+          color={textColor}
         >
           Eyran Abbou
         </Text>
@@ -54,7 +57,7 @@ const Home = () => {
           lg: "20px",
           xl: "22px",
         }}
-        color="black"
+        color={textColor}
       >
         I'm a Full Stack Developer & Software Engineer
       </Text>
@@ -72,7 +75,7 @@ const Home = () => {
         borderRadius="full"
         margin="2rem"
       />
-      <Button colorScheme="teal" variant="outline">
+      <Button mt={'15px'} colorScheme="whatsapp" variant="outline">
         <Link href={cv} isExternal download>
           Download CV
         </Link>
