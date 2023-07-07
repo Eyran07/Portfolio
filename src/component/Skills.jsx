@@ -25,9 +25,9 @@ import { faLaptopCode, faServer, faDatabase } from "@fortawesome/free-solid-svg-
 
 const SkillItem = ({ icon, color, name }) => {
   return (
-    <VStack spacing={2} alignItems="center" mr={8}>
+    <VStack spacing={2} alignItems="center" mr={[4, 4, 8, 8]}>
       <Circle
-        size="70px"
+        size={['40px', '40px', '70px', '70px']}
         borderColor={color}
         borderWidth="2px"
         _hover={{
@@ -50,21 +50,21 @@ const Skills = () => {
     { icon: faHtml5, name: "HTML5", color: "#E34F26" },
     { icon: faReact, name: "React", color: "#61DBFB" },
     { icon: faCss3Alt, name: "CSS3", color: "#1572B6" },
-    { icon: faLaptopCode, name: "Frontend Dev", color: "#007acc" },
+    { icon: faLaptopCode, name: "TypeScript", color: "#007acc" },
   ];
 
   const backEndSkills = [
     { icon: faNodeJs, name: "Node.js", color: "#539e43" },
-    { icon: faServer, name: "Server", color: "#000000" },
-    { icon: faDatabase, name: "Database", color: "#47A248" },
-    { icon: faServer, name: "Server 2", color: "#FFCA28" },
+    { icon: faServer, name: "Express", color: "#000000" },
+    { icon: faDatabase, name: "MongoDB", color: "#47A248" },
+    { icon: faServer, name: "Firebase", color: "#FFCA28" },
   ];
 
   const otherSkills = [
     { icon: faFigma, name: "Figma", color: "#F24E1E" },
     { icon: faGit, name: "Git", color: "#F34F29" },
     { icon: faSlack, name: "Slack", color: "#4A154B" },
-    { icon: faServer, name: "Server 3", color: "#000000" },
+    { icon: faServer, name: "Vercel", color: "#000000" },
   ];
 
 
