@@ -1,11 +1,28 @@
 import React from "react";
-import { Box, Heading, Text, Flex, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import { Box, Heading, Flex, Text, Divider } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faJs,
+  faReact,
+  faNodeJs,
+  faHtml5,
+  faCss3Alt,
+} from "@fortawesome/free-brands-svg-icons";
 import { faLaptopCode, faServer } from "@fortawesome/free-solid-svg-icons";
 
 const Skills = () => {
-  const frontEndSkills = ["JavaScript", "TypeScript", "React", "React Native", "Chakra UI"];
-  const backEndSkills = ["MongoDB", "Firebase", "Node.js", "Express"];
+  const frontEndSkills = [
+    { name: "JavaScript", icon: faJs, color: "#F7DF1E" },
+    { name: "HTML5", icon: faHtml5, color: "#E34F26" },
+    { name: "React", icon: faReact, color: "#61DBFB" },
+    { name: "CSS3", icon: faCss3Alt, color: "#1572B6" },
+  ];
+  const backEndSkills = [
+    { name: "Node.js", icon: faNodeJs, color: "#68A063" },
+    { name: "Express", icon: faServer, color: "#000000" },
+    { name: "MongoDB", icon: faServer, color: "#4DB33D" },
+    { name: "Firebase", icon: faServer, color: "#FFCA28" },
+  ];
 
   return (
     <Box
@@ -17,7 +34,6 @@ const Skills = () => {
       justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      textAlign="center"
       padding="1rem"
     >
       <Heading
@@ -31,24 +47,15 @@ const Skills = () => {
         fontWeight="bold"
         color="white"
         fontFamily={"Arial, sans-serif"}
-        mb={0}
+        mb={5}
         css={{
           WebkitTextStroke: "1px black",
         }}
       >
         My Skills
       </Heading>
-      <Flex
-        direction={{
-          base: "column",
-          sm: "row",
-        }}
-        justifyContent="space-around"
-        alignItems="center"
-        width="100%"
-        mt={9}
-      >
-        <Box margin="2rem">
+      <Flex direction={["column", "column"]} justifyContent="center"  mt={9}>
+        <Box width="100%" textAlign="start">
           <Heading
             fontSize={{
               base: "20px",
@@ -59,28 +66,34 @@ const Skills = () => {
             }}
             color="black"
             fontFamily={"Arial, sans-serif"}
-            mt={2}
+            mt={4}
+            css={{
+                WebkitTextStroke: "1px white",
+              }}
           >
             Frontend
           </Heading>
-          <FontAwesomeIcon icon={faLaptopCode} size="2x" color="teal" />
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>Skills</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {frontEndSkills.map((skill, index) => (
-                <Tr key={index} _hover={{ background: "teal", color: "white" }}>
-                  <Td>{skill}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
+          <Flex wrap="wrap" justify="center">
+            {frontEndSkills.map((skill, index) => (
+              <Box
+                key={index}
+                m={3}
+                _hover={{
+                  transform: "scale(1.1)",
+                }}
+              >
+                <FontAwesomeIcon icon={skill.icon} size="3x" color={skill.color} />
+                <Text>{skill.name}</Text>
+              </Box>
+            ))}
+          </Flex>
         </Box>
-        <Box margin="2rem">
+        </Flex>
+        <Divider borderColor="gray.500" w={'320px'} />
+        <Flex direction={["column", "column"]} justifyContent="center" >
+        <Box width="100%" textAlign="start" >
           <Heading
+          mr={'10px'}
             fontSize={{
               base: "20px",
               sm: "25px",
@@ -94,23 +107,22 @@ const Skills = () => {
           >
             Backend
           </Heading>
-          <FontAwesomeIcon icon={faServer} size="2x" color="teal" />
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>Skills</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {backEndSkills.map((skill, index) => (
-                <Tr key={index} _hover={{ background: "teal", color: "white" }}>
-                  <Td>{skill}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
+          <Flex wrap="wrap" justify="center">
+            {backEndSkills.map((skill, index) => (
+              <Box
+                key={index}
+                m={2}
+                _hover={{
+                  transform: "scale(1.1)",
+                }}
+              >
+                <FontAwesomeIcon icon={skill.icon} size="3x" color={skill.color} />
+                <Text>{skill.name}</Text>
+              </Box>
+            ))}
+          </Flex>
         </Box>
-      </Flex>
+        </Flex>
     </Box>
   );
 };

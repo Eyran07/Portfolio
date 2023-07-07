@@ -8,21 +8,21 @@ const Project = () => {
   const projects = [
     {
       title: "Pet Agency App",
-      description: "This is a brief description of Project 1.",
+      description: "Web application for a pet agency.",
     //   image: project1Image,
-      link: "https://project1.com",
+      link: "https://pet-agency-app-client.vercel.app/",
     },
     {
       title: "SueApp",
-      description: "This is a brief description of Project 2.",
+      description: "SueApp is a web application for a law firm.",
     //   image: project2Image,
       link: "https://project2.com",
     },
     {
       title: "Lucien et Marinette ",
-      description: "This is a brief description of Project 3.",
+      description: "Lucien et Marinette is a hotel website.",
     //   image: project3Image,
-      link: "https://project3.com",
+      link: "https://lmhotel.vercel.app/",
     },
   ];
 

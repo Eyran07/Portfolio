@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
-  Text,
   Flex,
   useColorModeValue,
   IconButton,
   useColorMode,
+  useDisclosure,
+  Collapse,
+  VStack,
 } from "@chakra-ui/react";
 import { Link as ScrollLink } from "react-scroll";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"; // Import icons for Dark Mode switch
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons"; 
 
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -23,6 +25,9 @@ const NavBar = () => {
     { name: "SKILLS", to: "skills" },
     { name: "CONTACT", to: "contact" },
   ];
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const handleToggle = () => (isOpen ? onClose() : onOpen());
 
   return (
     <>
@@ -48,6 +53,9 @@ const NavBar = () => {
         >
          Portfolio.
         </Box>
+        <Box display={["block", "block", "none", "none"]} onClick={handleToggle}>
+          {isOpen ? <CloseIcon /> : <HamburgerIcon />}
+        </Box>
         <IconButton
           aria-label="Toggle dark mode"
           icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -55,6 +63,39 @@ const NavBar = () => {
           color={"black"}
         />
       </Flex>
+      <Collapse in={isOpen} animateOpacity>
+        <VStack
+          display={["flex", "flex", "none", "none"]}
+          flexDirection="column"
+          position="fixed"
+          top="5rem"
+          width="100%"
+          bgColor={bgColor}
+          zIndex="modal"
+          padding="1rem"
+        >
+          {navItems.map((item, index) => (
+            <Box
+              as={ScrollLink}
+              key={index}
+              activeClass="active"
+              to={item.to}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              color={color}
+              cursor="pointer"
+              fontFamily={'Clash Display,sans-serif'}
+              fontSize="20px"
+              _hover={{ color: activeColor, borderRadius: '7px', backgroundColor: activeBgColor }}
+              onClick={onClose}
+            >
+              {item.name}
+            </Box>
+          ))}
+        </VStack>
+      </Collapse>
       <Flex
         position="fixed"
         bottom="0"
@@ -71,7 +112,7 @@ const NavBar = () => {
           paddingX="20px"
           paddingY="10px"
           bgColor={bgColor}
-          
+          display={["none", "none", "flex", "flex"]}
         >
           {navItems.map((item, index) => (
             <Box
@@ -86,8 +127,9 @@ const NavBar = () => {
               color={color}
               cursor="pointer"
               fontFamily={'Clash Display,sans-serif'}
+              fontSize="20px"
               marginX="1rem"
-              _hover={{ color: activeColor, borderRadius: '7px', backgroundColor: activeBgColor,  }}
+              _hover={{ color: activeColor, borderRadius: '7px', backgroundColor: activeBgColor }}
             >
               {item.name}
             </Box>

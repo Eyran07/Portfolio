@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Link, Heading, Text, Image, Button } from "@chakra-ui/react";
 import profile from "../assets/profil.jpeg";
+import background from '../assets/backgroundHome.jpeg';
 import cv from "../assets/cv.pdf";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       flexDirection="column"
       textAlign="center"
       padding="1rem"
+      // backgroundImage={`url(${background})`}
     >
       <Heading
         fontSize={{
