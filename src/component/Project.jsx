@@ -104,10 +104,7 @@ const Project = () => {
         My Projects
       </Heading>
       <Flex
-        direction={{
-          base: "column",
-          sm: "row",
-        }}
+        direction={['column', 'column', 'row', 'row']}
         justifyContent="space-around"
         alignItems="center"
         width="100%"
