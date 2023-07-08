@@ -18,6 +18,7 @@ import {
   Center,
   useColorModeValue,
   useColorMode,
+  ScaleFade,
 } from "@chakra-ui/react";
 import project1Image from "../assets/petagency.png";
 import project2Image from "../assets/sueapp.png";
@@ -78,54 +79,57 @@ const Project = () => {
 
   return (
     <Box
-      as="section"
-      id="project"
-      minH="100vh"
-      width="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-      textAlign="center"
-      padding="1rem"
-      backgroundColor={useColorModeValue("white", "#222")}
+    as="section"
+    id="project"
+    minH="100vh"
+    width="100%"
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    flexDirection="column"
+    textAlign="center"
+    padding="1rem"
+    backgroundColor={useColorModeValue("white", "#222")}
+  >
+    <Heading
+      fontSize={{
+        base: "30px",
+        sm: "35px",
+        md: "40px",
+        lg: "45px",
+        xl: "50px",
+      }}
+      fontWeight="bold"
+      color="white"
+      fontFamily={"Arial, sans-serif"}
+      mb={0}
+      css={{
+        WebkitTextStroke: "1px black",
+      }}
     >
-      <Heading
-        fontSize={{
-          base: "30px",
-          sm: "35px",
-          md: "40px",
-          lg: "45px",
-          xl: "50px",
-        }}
-        fontWeight="bold"
-        color="white"
-        fontFamily={"Arial, sans-serif"}
-        mb={0}
-        css={{
-          WebkitTextStroke: "1px black",
-        }}
-      >
-        My Projects
-      </Heading>
-      <Flex
-        direction={["column", "column", "row", "row"]}
-        justifyContent="space-around"
-        alignItems="center"
-        width="100%"
-        mt={9}
-        padding="1rem"
-        color={useColorModeValue("#222", "white")}
-      >
-        {projects.map((project, index) => (
-          <Box
-            key={index}
-            margin="2rem"
-            d="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-          >
+      My Projects
+    </Heading>
+    <Flex
+      direction={["column", "column", "row", "row"]}
+      justifyContent="space-around"
+      alignItems="center"
+      width="100%"
+      mt={9}
+      padding="1rem"
+      color={useColorModeValue("#222", "white")}
+    >
+      {projects.map((project, index) => (
+        <Box
+          key={index}
+          margin="2rem"
+          d="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          _hover={{ transform: "scale(1.05)" }} // Add hover effect
+          transition="transform 0.2s" // Add transition
+        >
+          <ScaleFade initialScale={0.9} in={true}>
             <Image
               ml={["30px", "40px", "none", "none"]}
               src={project.image}
@@ -139,6 +143,7 @@ const Project = () => {
               }}
               objectFit="contain"
             />
+          </ScaleFade>
             <Heading
               fontSize={{
                 base: "20px",
