@@ -19,6 +19,7 @@ import {
   useColorModeValue,
   useColorMode,
   ScaleFade,
+  VStack,
 } from "@chakra-ui/react";
 import project1Image from "../assets/petagency.png";
 import project2Image from "../assets/sueapp.png";
@@ -78,122 +79,116 @@ const Project = () => {
   };
 
   return (
-    <Box
-    as="section"
-    id="project"
-    minH="100vh"
-    width="100%"
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    flexDirection="column"
-    textAlign="center"
-    padding="1rem"
-    backgroundColor={useColorModeValue("white", "#222")}
-  >
-    <Heading
-      fontSize={{
-        base: "30px",
-        sm: "35px",
-        md: "40px",
-        lg: "45px",
-        xl: "50px",
-      }}
-      fontWeight="bold"
-      color="white"
-      fontFamily={"Arial, sans-serif"}
-      mb={0}
-      css={{
-        WebkitTextStroke: "1px black",
-      }}
-    >
-      My Projects
-    </Heading>
-    <Flex
-      direction={["column", "column", "row", "row"]}
-      justifyContent="space-around"
-      alignItems="center"
-      width="100%"
-      mt={9}
-      padding="1rem"
-      color={useColorModeValue("#222", "white")}
-    >
-      {projects.map((project, index) => (
-        <Box
-          key={index}
-          margin="2rem"
-          d="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          _hover={{ transform: "scale(1.05)" }} // Add hover effect
-          transition="transform 0.2s" // Add transition
+      <Box
+        as="section"
+        id="project"
+        minH="100vh"
+        width="100%"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        textAlign="center"
+        padding="1rem"
+        backgroundColor={useColorModeValue("white", "#222")}
+      >
+        <Heading
+          fontSize={{
+            base: "30px",
+            sm: "35px",
+            md: "40px",
+            lg: "45px",
+            xl: "50px",
+          }}
+          fontWeight="bold"
+          color="white"
+          fontFamily={"Arial, sans-serif"}
+          mb={0}
+          css={{
+            WebkitTextStroke: "1px black",
+          }}
         >
-          <ScaleFade initialScale={0.9} in={true}>
-            <Image
-              ml={["30px", "40px", "none", "none"]}
-              src={project.image}
-              alt={project.title}
-              boxSize={{
-                base: "150px",
-                sm: "200px",
-                md: "250px",
-                lg: "300px",
-                xl: "350px",
-              }}
-              objectFit="contain"
-            />
-          </ScaleFade>
-            <Heading
-              fontSize={{
-                base: "20px",
-                sm: "25px",
-                md: "30px",
-                lg: "35px",
-                xl: "40px",
-              }}
-              fontFamily={"Arial, sans-serif"}
-              mt={2}
+          My Projects
+        </Heading>
+        <Flex
+          direction={["column", "column", "row", "row"]}
+          justifyContent="space-around"
+          alignItems="center"
+          width="100%"
+          mt={9}
+          padding="1rem"
+          color={useColorModeValue("#222", "white")}
+        >
+          {projects.map((project, index) => (
+            <VStack
+              key={index}
+              margin="2rem"
+              _hover={{ transform: "scale(1.05)" }} // Add hover effect
+              transition="transform 0.2s" // Add transition
             >
-              {project.title}
-            </Heading>
-            <Text
-              fontFamily={"Arial, sans-serif"}
-              fontSize={{
-                base: "14px",
-                sm: "16px",
-                md: "18px",
-                lg: "20px",
-                xl: "22px",
-              }}
-            >
-              {`${project.description.substring(0, 40)}...`}
-            </Text>
-            <Button
-              onClick={() =>
-                openModal(
-                  project.title,
-                  project.description,
-                  project.image,
-                  project.techIcons,
-                  project.techIconColors
-                )
-              }
-              colorScheme="whatsapp"
-              variant="outline"
-              mt={2}
-              mr={5}
-            >
-              See More
-            </Button>
-            <Button colorScheme="whatsapp" variant="outline" mt={2}>
-              <Link href={project.link} isExternal>
-                View Project
-              </Link>
-            </Button>
-          </Box>
-        ))}
-      </Flex>
+              <ScaleFade initialScale={0.9} in={true}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  boxSize={{
+                    base: "150px",
+                    sm: "200px",
+                    md: "250px",
+                    lg: "300px",
+                    xl: "350px",
+                  }}
+                  objectFit="contain"
+                />
+              </ScaleFade>
+              <Heading
+                fontSize={{
+                  base: "20px",
+                  sm: "25px",
+                  md: "30px",
+                  lg: "35px",
+                  xl: "40px",
+                }}
+                fontFamily={"Arial, sans-serif"}
+                mt={2}
+              >
+                {project.title}
+              </Heading>
+              <Text
+                fontFamily={"Arial, sans-serif"}
+                fontSize={{
+                  base: "14px",
+                  sm: "16px",
+                  md: "18px",
+                  lg: "20px",
+                  xl: "22px",
+                }}
+              >
+                {`${project.description.substring(0, 40)}...`}
+              </Text>
+              <Button
+                onClick={() =>
+                  openModal(
+                    project.title,
+                    project.description,
+                    project.image,
+                    project.techIcons,
+                    project.techIconColors
+                  )
+                }
+                colorScheme="whatsapp"
+                variant="outline"
+                mt={2}
+              >
+                See More
+              </Button>
+              <Button colorScheme="whatsapp" variant="outline" mt={2}>
+                <Link href={project.link} isExternal>
+                  View Project
+                </Link>
+              </Button>
+            </VStack>
+          ))}
+        </Flex>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent backgroundColor={useColorModeValue("white", "#222")}>

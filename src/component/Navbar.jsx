@@ -50,7 +50,6 @@ const NavBar = () => {
           cursor="pointer"
           marginX="1rem"
           color={color}
-          _hover={{ color: activeColor, backgroundColor: activeBgColor }}
           fontSize="20px"
         >
          Portfolio.
